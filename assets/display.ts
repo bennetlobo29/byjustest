@@ -6,7 +6,7 @@
 //  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
 
 const {ccclass, property} = cc._decorator;
-const arr= []
+var arr= []
 @ccclass
 export default class NewClass extends cc.Component {
     
@@ -18,7 +18,7 @@ export default class NewClass extends cc.Component {
 
     lab=null
      onLoad () {
-         this.node.on('touchend',this.buttonclick,this);
+         this.node.on('touchstart',this.buttonclick,this);
      }
      
      buttonclick(){
@@ -34,11 +34,16 @@ export default class NewClass extends cc.Component {
         this.display.string=this.lab
         dl.setPosition(-15+(dl.x),0)
        
-     }else{
-         return
      }
      if(this.node.name==="clear"){
-         this.display.string="0";
+        arr=[0]
+        this.display.string=arr.join("")
+        this.display.node.setPosition(212.659,0)
+        
+        if(this.node.active==true){
+            arr.length=0
+        }
+
      }
     }
     start () {
